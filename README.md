@@ -1,4 +1,4 @@
-# painel_admin_coletiva
+# Painel Admin Coletiva
 
 A new Flutter project.
 
