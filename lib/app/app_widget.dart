@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final injector = GetIt.instance;
+    final injector = GetIt.I;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
