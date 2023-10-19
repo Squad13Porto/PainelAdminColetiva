@@ -7,24 +7,19 @@ class CoursesService {
 
   Future<List<CourseModel>> getAllCourses() async {
     try {
-      List<CourseModel> courses = [];
-
-      final response = await firebaseFirestore
+      final doc = await firebaseFirestore
           .collection("courses")
           .doc("e42FnWxZdOK244QNRY0c")
           .get();
 
-      final data = response.data();
+      final data = doc.data();
 
       if (data != null) {
-        for (var course in data["itens"]) {
-          courses.add(CourseModel.fromMap(course));
-        }
+        final List<Map<String, dynamic>> itens = data["itens"];
+        return itens.map((e) => CourseModel.fromMap(e)).toList();
       } else {
         throw Exception();
       }
-
-      return courses;
     } catch (e) {
       throw Exception();
     }
