@@ -15,7 +15,7 @@ class CoursesService {
       final data = doc.data();
 
       if (data != null) {
-        final List<Map<String, dynamic>> itens = data["itens"];
+        final List<dynamic> itens = data["itens"];
         return itens.map((e) => CourseModel.fromMap(e)).toList();
       } else {
         throw Exception();

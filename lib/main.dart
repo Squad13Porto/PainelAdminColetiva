@@ -16,5 +16,6 @@ Future<void> main() async {
   );
 
   AppDependencies().registerDependencies();
+  
   runApp(const AppWidget());
 }

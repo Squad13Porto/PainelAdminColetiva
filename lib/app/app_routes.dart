@@ -1,4 +1,4 @@
 class AppRoutes {
   static String login = "/login";
-  static String courses = "/courses";
+  static String home = "/home";
 }

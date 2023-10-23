@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:painel_admin_coletiva/modules/courses/presentation/pages/all_courses/controller/all_courses_controller.dart';
 import 'package:painel_admin_coletiva/modules/courses/presentation/pages/all_courses/controller/all_courses_state.dart';
+import 'package:painel_admin_coletiva/modules/courses/presentation/widgets/course_card/course_card_widget.dart';
 
 class AllCoursesPage extends StatefulWidget {
   final AllCoursesController controller;
@@ -24,9 +25,6 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
       body: ValueListenableBuilder(
         valueListenable: widget.controller.state,
         builder: (context, state, _) {
@@ -35,20 +33,30 @@ class _AllCoursesPageState extends State<AllCoursesPage> {
           }
 
           if (state is AllCoursesStateSuccess) {
-            return ListView.builder(
-              itemCount: state.courses.length,
-              itemBuilder: (context, index) {
-                final course = state.courses[index];
-                return ListTile(
-                  title: Text(course.nome),
-                );
-              },
+            return Padding(
+              padding: const EdgeInsets.all(48.0),
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                runSpacing: 15.0,
+                spacing: 15.0,
+                children: List.generate(
+                  state.courses.length,
+                  (index) {
+                    final course = state.courses[index];
+                    return CourseCardWidget(course: course);
+                  },
+                ),
+              ),
             );
           }
 
           final errorState = state as AllCoursesStateError;
           return Center(child: Text(errorState.message));
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
       ),
     );
   }
